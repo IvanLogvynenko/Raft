@@ -4,6 +4,8 @@
 #include "Follower.hpp"
 #include "Leader.hpp"
 
+#include "Heartbeat.hpp"
+
 #include <memory>
 
 class RaftServer
