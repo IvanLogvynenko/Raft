@@ -2,7 +2,7 @@
 
 Leader::Leader()
 {
-    Server server = Server();
+    
 }
 
 Leader::~Leader()

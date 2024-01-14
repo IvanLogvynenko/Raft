@@ -1,8 +1,10 @@
 #include "ServerStateWrapper.hpp"
+#include "basic.hpp"
 
 ServerStateWrapper::ServerStateWrapper(const std::string state_s)
 {
-    this->state = *parseState(state_s);
+    if (state_s != "")
+        this->m_state = *parseState(state_s);
 }
 
 ServerStateWrapper::~ServerStateWrapper() {}
@@ -18,12 +20,29 @@ std::unique_ptr<ServerState> ServerStateWrapper::parseState(const std::string st
     throw std::runtime_error("Parsing failed");
 }
 
+ServerStateWrapper::operator std::string() const
+{
+    switch (m_state)
+    {
+    case ServerState::Leader:
+        return "Leader";
+    case ServerState::Follower:
+        return "Follower";        
+        break;
+    case ServerState::Candidate:
+        return "Candidate";
+        break;
+    default:
+        return "Unknown state";
+    }
+}
+
 ServerState ServerStateWrapper::getState() const
 {
-    return this->state;
+    return this->m_state;
 }
 
 ServerStateWrapper::operator ServerState() const
 {
-    return this->state;
+    return this->m_state;
 }

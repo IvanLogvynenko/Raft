@@ -4,12 +4,18 @@
 #include "Follower.hpp"
 #include "Leader.hpp"
 
+#include "Log.hpp"
+
 #include "Heartbeat.hpp"
 #include "IdentityMessage.hpp"
 
 #include "ServerStateWrapper.hpp"
 
 #include "Connection.hpp"
+#include "Client.hpp"
+
+#include <queue>
+#include <vector>
 
 #include <memory>
 
@@ -20,13 +26,14 @@
 class RaftServer
 {
 private:
-    ServerStateWrapper m_state;
-    std::unique_ptr<Server> m_server;
+    Server m_server;
 
-    std::vector<Connection> m_clients;
-    std::vector<Connection> m_servers;
+    ServerStateWrapper m_state;
+
+    std::vector<Log> m_logs;
 public:
     RaftServer(std::string initial_state = INITIAL_STATE);
     ~RaftServer();
-    
+
+    Connection& awaitNewConnection(std::function<void(Connection&)> = nullptr);
 };

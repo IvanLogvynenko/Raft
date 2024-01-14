@@ -43,13 +43,18 @@ fi
 
 echo "Execution start"
 
-build/leader $1 > logs/Leader.log &
+build/leader 37373 > logs/Leader.log &
 pid_leader=$!
 
-echo "Server started. Starting client"
+echo "Leader started. Starting follower"
 
-build/follower "127.0.0.1" $1 > logs/Follower.log & 
+build/follower 19191 "127.0.0.1" 37373 > logs/Follower.log & 
 pid_follower=$!
+
+echo "Follower started. Starting client connection to follower" 
+sleep 1
+
+build/client "127.0.0.1" 37373 > logs/Client.log
 
 echo "Awaiting execution to finish"
 

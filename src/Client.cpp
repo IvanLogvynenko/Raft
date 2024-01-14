@@ -80,7 +80,7 @@ int Client::openSocket(struct addrinfo* res)
 
 void Client::disconnect()
 {
-    LOG("Disconnecting..");
+    LOG("Disconnecting...");
     close(this->m_socket_fd);
     this->m_socket_fd = -1;
     if (!this->m_connection->ifEmpty())
