@@ -18,6 +18,7 @@ set(src_files
     src/Follower.cpp
 
     src/Heartbeat.cpp
+    src/IdentityMessage.cpp
 
     src/RaftServer.cpp
 

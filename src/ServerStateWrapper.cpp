@@ -18,12 +18,12 @@ std::unique_ptr<ServerState> ServerStateWrapper::parseState(const std::string st
     throw std::runtime_error("Parsing failed");
 }
 
-inline ServerState ServerStateWrapper::getState() const
+ServerState ServerStateWrapper::getState() const
 {
     return this->state;
 }
 
-inline ServerStateWrapper::operator ServerState()
+ServerStateWrapper::operator ServerState() const
 {
     return this->state;
 }

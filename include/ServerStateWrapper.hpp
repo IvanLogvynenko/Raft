@@ -14,6 +14,6 @@ public:
 
     static std::unique_ptr<ServerState> parseState(const std::string = std::string(""));
 
-    inline ServerState getState() const;
-    inline operator ServerState();
+    ServerState getState() const;
+    operator ServerState() const;
 };
